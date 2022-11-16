@@ -13,6 +13,10 @@ struct Recipe: Identifiable {
     init(){
         self.init(mainInformation: MainInformation(name: "", description: "", author: "", category: .breakfast), ingredients: [], directions: [])
     }
+    var isValid: Bool {
+        mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
+        
+    }
 }
 
 struct MainInformation {
@@ -20,6 +24,9 @@ struct MainInformation {
     var description: String
     var author: String
     var category: Category
+    var isValid: Bool {
+        !name.isEmpty && !description.isEmpty && !author.isEmpty
+    }
     
     enum Category: String, CaseIterable {
         case breakfast = "Breakfast"
@@ -30,7 +37,6 @@ struct MainInformation {
 }
 
 struct Ingredient {
-//    var id = UUID()
     var name:String
     var quantity: Double
     var unit: Unit
@@ -49,21 +55,21 @@ struct Ingredient {
             }
         }
     }
-        enum Unit: String, CaseIterable {
-            case oz = "Ounces"
-            case g = "Grams"
-            case cups = "Cups"
-            case tbs = "Tablespoons"
-            case tsp = "Teaspoons"
-            case none = "No units"
-            
-            var singularName: String { String(rawValue.dropLast()) }
-        }
+    enum Unit: String, CaseIterable {
+        case oz = "Ounces"
+        case g = "Grams"
+        case cups = "Cups"
+        case tbs = "Tablespoons"
+        case tsp = "Teaspoons"
+        case none = "No units"
+        
+        var singularName: String { String(rawValue.dropLast()) }
+    }
     
 }
-    struct Direction {
-        var description: String
-        var isOptional: Bool
-    }
+struct Direction {
+    var description: String
+    var isOptional: Bool
+}
 
 
