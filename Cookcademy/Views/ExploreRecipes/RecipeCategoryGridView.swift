@@ -18,11 +18,12 @@ struct RecipeCategoryGridView: View {
                         
                     }
                 })
+                }
             }
             .navigationTitle("Categories")
         }
     }
-}
+
 
 struct CategoryView: View {
     let category: MainInformation.Category
