@@ -22,6 +22,8 @@ struct Recipe: Identifiable {
     var isValid: Bool {
         mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
     }
+    
+    
 }
 
 struct MainInformation {
