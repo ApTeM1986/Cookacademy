@@ -10,12 +10,13 @@ struct MainTabView: View {
             NavigationView {
                 RecipesListView(viewStyle: .favorites)
             }.tabItem { Label("Favorites", systemImage: "heart.fill") }
-            SettingsView ()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
+            SettingsView()
+                .tabItem { Label("Settings", systemImage: "gear") }
         }
         .environmentObject(recipeData)
+        .onAppear {
+            recipeData.loadRecipes()
+        }
     }
 }
 

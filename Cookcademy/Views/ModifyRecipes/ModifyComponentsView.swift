@@ -1,6 +1,6 @@
 import SwiftUI
 
-protocol RecipeComponent: CustomStringConvertible {
+protocol RecipeComponent: CustomStringConvertible, Codable {
     init()
     static func singularName() -> String
     static func pluralName() -> String
@@ -23,7 +23,7 @@ protocol ModifyComponentView: View {
 struct ModifyComponentsView<Component: RecipeComponent, DestinationView: ModifyComponentView>: View where DestinationView.Component == Component {
     @Binding var components: [Component]
     
-    @AppStorage ("listBackgroundColor") private var listBackgroundColor = AppColor.background
+    @AppStorage("listBackgroundColor") private var listBackgroundColor = AppColor.background
     @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
 
     @State private var newComponent = Component()
